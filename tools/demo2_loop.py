@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding: utf-8
+#coding: utf-8
 
 """
 Demo script showing detections in a sample image
@@ -82,7 +82,7 @@ def vis_detections(args, ax, iax, im, class_names, dets, thresh=0.5):
                 '{:s} {:.3f}'.format(class_name, score),
                 bbox=dict(facecolor='white', edgecolor='black', alpha=0.7, pad=5.0),
                 va='top',
-                fontsize=14, color='white')
+                fontsize=14, color='black')
 
     ax.set_title(('detections with '
                   'p(class | box) >= {:.1f}').format(thresh),
@@ -152,8 +152,7 @@ def demo(args, net):
         vis_detections(args, ax, iax, img, vclss, vdets, thresh=args.CONF_THRESH)
         #ax.axis('off')
         plt.draw()
-        #pdb.set_trace()
-        #plt.pause(0)
+        plt.pause(0.001)
         #time.sleep(0.1)
         if args.out_image_file:
             #plt.tight_layout()
@@ -170,10 +169,11 @@ def parse_args():
     parser.add_argument('--net', dest='demo_net', help='Network to use [vgg16]',
                         choices=NETS.keys(), default='vgg16')
     # image
-    parser.add_argument("--image-file", dest="image_file", default='../../module_caffe/cam/dummy.jpg')
+    #parser.add_argument("--image-file", dest="image_file", default='/Users/pichai/Documents/demo/capcam/out.jpg')
+    parser.add_argument("--image-file", dest="image_file", default='../../../demo/capcam/out.jpg')
     parser.add_argument("--image-copy-file", dest="image_copy_file", default='tools/input.jpg')
-    #parser.add_argument("--out-image-file", dest="out_image_file", default='tools/output.jpg')
-    parser.add_argument("--out-image-file", dest="out_image_file", default=None)
+    parser.add_argument("--out-image-file", dest="out_image_file", default='tools/output.jpg')
+    #parser.add_argument("--out-image-file", dest="out_image_file", default=None)
     # color
     parser.add_argument("--cmap-name", dest="cmap_name", default='jet')
     parser.add_argument("--cmap-step", dest="cmap_step", type=int, default=2**16)
